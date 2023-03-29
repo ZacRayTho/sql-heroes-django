@@ -10,3 +10,7 @@ def heroes(request):
     # print(list)
     return HttpResponse("All Heroes: %s " % list)
 # Create your views here.
+
+def detailed_hero(request, hero_id):
+    x = Hero.objects.get(pk=hero_id)
+    return HttpResponse("%s is the best hero"% x)

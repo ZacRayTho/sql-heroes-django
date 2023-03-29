@@ -19,5 +19,6 @@ from heroes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('heroes/', views.heroes)
+    path('heroes/', views.heroes),
+    path('details/<int:hero_id>/', views.detailed_hero),
 ]
