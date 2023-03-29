@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('heroes/', views.heroes),
     path('details/<int:hero_id>/', views.detailed_hero),
-    path('powers/<str:power>/', views.power)
+    path('powers/<str:power>/', views.power),
+    path('json/', views.json)
 ]
