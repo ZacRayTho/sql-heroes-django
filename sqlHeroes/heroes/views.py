@@ -4,6 +4,41 @@ from .models import Hero, Power, Relationship_type, Relationship
 from django.http import JsonResponse
 import json 
 
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import *
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    # permission_classes = [permissions.AllowAny()]
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    # permission_classes = [permissions.AllowAny()]
+
+class HeroViewSet(viewsets.ModelViewSet):
+    queryset = Hero.objects.all()
+    serializer_class = HeroSerializer
+
+class RelationshipViewSet(viewsets.ModelViewSet):
+    queryset = Relationship.objects.all()
+    serializer_class = RelationshipSerializer
+
+class PowerViewSet(viewsets.ModelViewSet):
+    queryset = Power.objects.all()
+    serializer_class = PowerSerializer
+
 
 def heroes(request):
     x = Hero.objects.all()
@@ -35,3 +70,5 @@ def power(request, power):
 def json(request):
     data = list(Hero.objects.values())
     return JsonResponse(data, safe=False)
+
+
